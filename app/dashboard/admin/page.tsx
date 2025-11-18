@@ -7,7 +7,6 @@ export default async function AdminPage() {
 
   const users = await getUser()
 
-
   return (
     <Tabs defaultValue="usuarios" className="w-full">
       <TabsList className="w-full">
