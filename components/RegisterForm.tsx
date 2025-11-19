@@ -13,7 +13,7 @@ const initialState: RegisterResult = { error: "", success: "" }
 function SubmitButton() {
   const { pending } = useFormStatus()
   return (
-    <Button type="submit" disabled={pending}>
+    <Button type="submit" disabled={pending} className="w-full">
       {pending ? "Creando..." : "Crear Usuario"}
     </Button>
   )
@@ -25,7 +25,7 @@ export default function RegisterForm() {
 
   useEffect(() => {
     if (state.success) {
-      router.push("/login")
+      router.push("/dashboard/admin")
     }
   }, [state.success, router])
 
@@ -33,14 +33,22 @@ export default function RegisterForm() {
   const message = state.error || state.success
 
   return (
-    <form action={formAction} className="w-full max-w-md space-y-6 rounded-xl bg-white p-8 shadow-2xl">
-      <h1 className="text-3xl font-bold text-center">Crear Usuario</h1>
+    <form action={formAction} className="flex flex-col w-1/2 items-center space-y-6 rounded-xl bg-white p-8 shadow-2xl">
+      <h1 className="text-3xl font-bold text-center">Alta Usuario</h1>
       <Input name="name" type="text" placeholder="Nombre" required className="w-full rounded-lg border p-3" />
       <Input name="email" type="email" placeholder="Email" required className="w-full rounded-lg border p-3" />
       <Input
         name="password"
         type="password"
         placeholder="Contraseña (mínimo 6)"
+        required
+        minLength={6}
+        className="w-full rounded-lg border p-3"
+      />
+      <Input
+        name="password2"
+        type="password"
+        placeholder="Confirmar Contraseña (mínimo 6)"
         required
         minLength={6}
         className="w-full rounded-lg border p-3"

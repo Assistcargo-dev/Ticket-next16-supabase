@@ -14,8 +14,42 @@ model User {
   name      String   @default("Name")
   password  String
   role      String   @default("user")
+  active    Boolean  @default(true)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  // Relaciones:
+  sectorId  String?  @db.Uuid
+  rangoId   String?  @db.Uuid
+
+  sector    Sector?  @relation(fields: [sectorId], references: [id])
+  rango     Rango?   @relation(fields: [rangoId], references: [id])
+
   @@map("users")
+}
+
+model Sector {
+  id        String   @id @default(uuid()) @db.Uuid
+  name      String
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relación inversa
+  users     User[]
+
+  @@map("sectores")
+}
+
+model Rango {
+  id        String   @id @default(uuid()) @db.Uuid
+  name      String
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relación inversa
+  users     User[]
+
+  @@map("rangos")
 }

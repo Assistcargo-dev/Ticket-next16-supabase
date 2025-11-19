@@ -18,10 +18,15 @@ export async function registerUser(
   const email = (formData.get("email") as string)?.trim().toLowerCase()
   const name = (formData.get("name") as string)?.trim()
   const password = formData.get("password") as string
+  const password2 = formData.get("password2") as string
   const role = ((formData.get("role") as string) || "user").trim()
 
   if (!email || !password || password.length < 6) {
     return INVALID_DATA
+  }
+
+  if (password !== password2) {
+    return { error: "Las contraseñas no coinciden" }
   }
 
   const hashedPassword = await bcrypt.hash(password, 12)

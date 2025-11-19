@@ -21,24 +21,24 @@ export const {
 
         if (!email || !password) return null
 
-        console.log("→ Buscando usuario:", email)
+        // console.log("→ Buscando usuario:", email)
 
         const user = await prisma.user.findUnique({
-          where: { email },
+          where: { email, active: true },
           select: { id: true, email: true, password: true, role: true, name: true },
         })
 
         if (!user) {
-          console.log("→ Usuario NO encontrado")
+          // console.log("→ Usuario NO encontrado")
           return null
         }
 
         const match = await bcrypt.compare(password, user.password!)
-        console.log("→ ¿Password coincide?", match)
+        // console.log("→ ¿Password coincide?", match)
 
         if (!match) return null
 
-        console.log("→ LOGIN EXITOSO:", user.email, user.role)
+        // console.log("→ LOGIN EXITOSO:", user.email, user.role)
 
         return {
           id: user.id.toString(),
