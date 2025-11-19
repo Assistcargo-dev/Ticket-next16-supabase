@@ -39,7 +39,7 @@ async function LayoutDashboardContent({ children }: { children: React.ReactNode 
               href="/dashboard/tickets"
               className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-300"
             >
-              Mis Tickets
+              Mi Dashboard
             </a>
             <a
               href="/dashboard/profile"

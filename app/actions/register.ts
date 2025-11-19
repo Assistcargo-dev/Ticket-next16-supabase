@@ -19,6 +19,12 @@ export async function registerUser(
   const name = (formData.get("name") as string)?.trim()
   const password = formData.get("password") as string
   const password2 = formData.get("password2") as string
+  const informe1 = (formData.get("informe1") as string)?.trim()
+  const informe2 = (formData.get("informe2") as string)?.trim()
+  const informe3 = (formData.get("informe3") as string)?.trim()
+  const superior = (formData.get("superior") as string)?.trim()
+  const sector = (formData.get("sector") as string)?.trim()
+  const rango = (formData.get("rango") as string)?.trim()
   const role = ((formData.get("role") as string) || "user").trim()
 
   if (!email || !password || password.length < 6) {
@@ -37,6 +43,12 @@ export async function registerUser(
         email,
         name: name || undefined,
         password: hashedPassword,
+        informe1: informe1 || undefined,
+        informe2: informe2 || undefined,
+        informe3: informe3 || undefined,
+        superior: superior || undefined,
+        sectorId: sector || undefined,
+        rangoId: rango || undefined,
         role,
       },
     })
