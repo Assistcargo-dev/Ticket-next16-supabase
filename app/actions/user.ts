@@ -27,6 +27,13 @@ export async function getUserById(userId: string) {
       name: true,
       email: true,
       role: true,
+      informe1: true,
+      informe2: true,
+      informe3: true,
+      superior: true,
+      sectorId: true,
+      rangoId: true,
+      active: true,
     },
   })
   return user

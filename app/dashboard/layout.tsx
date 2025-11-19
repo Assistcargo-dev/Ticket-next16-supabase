@@ -36,7 +36,7 @@ async function LayoutDashboardContent({ children }: { children: React.ReactNode 
         <aside className="bg-gray-200 p-4">
           <nav className="space-y-2 grid grid-template-columns-1 ">
             <a
-              href="/dashboard/tickets"
+              href="/dashboard"
               className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-300"
             >
               Mi Dashboard

@@ -44,7 +44,6 @@ type RegisterFormProps = {
 }
 
 export default function RegisterForm({ sectores, rangos, users }: RegisterFormProps) {
-  console.log(users)
   const [sectorValue, setSectorValue] = useState("")
   const [rangoValue, setRangoValue] = useState("")
   const [userValue, setUserValue] = useState("")

@@ -2,6 +2,7 @@ import NextAuth from "next-auth"
 import Credentials from "next-auth/providers/credentials"
 import bcrypt from "bcrypt"
 import { prisma } from "@/lib/prisma"
+import { User } from "lucide-react"
 
 export const {
   handlers: { GET, POST },
@@ -27,6 +28,7 @@ export const {
           where: { email, active: true },
           select: { id: true, email: true, password: true, role: true, name: true },
         })
+
 
         if (!user) {
           // console.log("→ Usuario NO encontrado")
@@ -56,12 +58,14 @@ export const {
           token.role = user.role
         }
         token.name = user.name ?? token.name
+        token.id = user.id
       }
       return token
     },
     session({ session, token }) {
       if (session.user) {
         session.user.role = token.role as string
+        session.user.id = token.id as string
         if (token.name) session.user.name = token.name
       }
       return session
