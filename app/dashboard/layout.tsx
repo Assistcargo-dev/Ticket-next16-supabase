@@ -41,12 +41,6 @@ async function LayoutDashboardContent({ children }: { children: React.ReactNode 
             >
               Mi Dashboard
             </a>
-            <a
-              href="/dashboard/profile"
-              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-300"
-            >
-              Perfil
-            </a>
             {userRole === "admin" && (
               <a
                 href="/dashboard/admin"

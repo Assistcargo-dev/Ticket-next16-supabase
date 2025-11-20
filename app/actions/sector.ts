@@ -57,20 +57,37 @@ export async function createSector(
   return { success: `¡Sector creado! Nombre: ${name}` };
 }
 
-export async function updateSector(sectorId: string, name: string) {
-  const updatedSector = await prisma.sector.update({
-    where: {
-      id: sectorId,
-    },
-    data: {
-      name,
-    },
-    select: {
-      id: true,
-      name: true,
-    },
-  });
-  return updatedSector;
+export async function updateSector(
+  prevState: SectorResult,
+  formData: FormData
+): Promise<SectorResult> {
+  try {
+    const sectorId = formData.get("id") as string
+    const name = formData.get("name") as string
+
+    if (!name) {
+      return { error: "Nombre inválido" };
+    }
+
+    await prisma.sector.update({
+      where: {
+        id: sectorId,
+      },
+      data: {
+        name,
+      },
+      select: {
+        id: true,
+        name: true,
+      },
+    })
+
+    return { success: `¡Sector modificado! Nombre: ${name}`, error: "" }
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "Error al modificar sector"
+    console.error("Error modificando sector", error)
+    return { error: message, success: "" }
+  }
 }
 
 export async function deleteSectorById(id: string) {

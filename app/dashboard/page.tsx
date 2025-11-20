@@ -21,10 +21,11 @@ export default async function DashboardPage() {
 
   return (
     <div className="container mx-auto p-1">
-      <Tabs defaultValue="informes" className="w-full">
+      <Tabs defaultValue="tickets" className="w-full">
         <TabsList className="w-full">
-          <TabsTrigger value="informes">Informes</TabsTrigger>
           <TabsTrigger value="tickets">Tickets</TabsTrigger>
+          <TabsTrigger value="informes">Informes</TabsTrigger>
+
         </TabsList>
 
         {/* ----- TAB PRINCIPAL: INFORMES ----- */}

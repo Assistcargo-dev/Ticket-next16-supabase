@@ -57,21 +57,40 @@ export async function createRango(
   return { success: `¡Rango creado! Nombre: ${name}` };
 }
 
-export async function updateRango(rangoId: string, name: string) {
-  const updatedRango = await prisma.rango.update({
-    where: {
-      id: rangoId,
-    },
-    data: {
-      name,
-    },
-    select: {
-      id: true,
-      name: true,
-    },
-  });
-  return updatedRango;
+export async function updateRango(
+  prevState: RangoResult,
+  formData: FormData
+): Promise<RangoResult> {
+  const rangoId = formData.get("id") as string
+  const name = formData.get("name") as string
+
+  if (!name) {
+    return { error: "Nombre inválido" };
+  }
+
+  try {
+    await prisma.rango.update({
+      where: {
+        id: rangoId,
+      },
+      data: {
+        name,
+      },
+      select: {
+        id: true,
+        name: true,
+      },
+    });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "Error al modificar rango"
+    console.error("Error modificando rango", error)
+    return { error: message, success: "" }
+
+  }
+
+  return { success: `¡Rango modificado! Nombre: ${name}`, error: "" }
 }
+
 
 export async function deleteRangoById(id: string) {
   if (!id) throw new Error("ID inválido")

@@ -7,6 +7,7 @@ import { getAllRangos } from "@/app/actions/rango"
 import DeleteRangoButton from "@/components/DeleteRangoButton"
 import DeleteSectorButton from "@/components/DeleteSectorButton"
 import DeleteUserButton from "@/components/DeleteUserButton"
+import Link from "next/link"
 
 
 
@@ -24,7 +25,7 @@ export default async function AdminPage() {
         <TabsTrigger value="rango">Rango</TabsTrigger>
       </TabsList>
       <TabsContent value="usuarios">
-        <a href="/dashboard/admin/user/create" className="inline-block mb-4 text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded">Crear Usuario</a>
+        <Link href="/dashboard/admin/user/create" className="inline-block mb-4 text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded">Crear Usuario</Link>
         <Table>
           <thead>
             <tr>
@@ -51,7 +52,7 @@ export default async function AdminPage() {
         </Table>
       </TabsContent>
       <TabsContent value="sector">
-        <a href="/dashboard/admin/sector/create" className="inline-block mb-4 text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded">Crear Sector</a>
+        <Link href="/dashboard/admin/sector/create" className="inline-block mb-4 text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded">Crear Sector</Link>
         <Table>
           <thead>
             <tr>
@@ -65,7 +66,7 @@ export default async function AdminPage() {
                 <td className="text-left border-2 p-2">{sector.name}</td>
                 <td className="text-left border-2 p-2">
                   {/* Aquí puedes agregar botones o enlaces para editar o eliminar usuarios */}
-                  <button className="text-blue-600 hover:underline mr-2">Editar</button>
+                  <Link href={`/dashboard/admin/sector/${sector.id}`} className="text-blue-600 hover:underline mr-2">Editar</Link>
                   <DeleteSectorButton id={sector.id} />
                 </td>
               </tr>
@@ -74,7 +75,7 @@ export default async function AdminPage() {
         </Table>
       </TabsContent>
       <TabsContent value="rango">
-        <a href="/dashboard/admin/rango/create" className="inline-block mb-4 text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded">Crear rango</a>
+        <Link href="/dashboard/admin/rango/create" className="inline-block mb-4 text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded">Crear rango</Link>
         <Table>
           <thead>
             <tr>
@@ -89,7 +90,7 @@ export default async function AdminPage() {
                 <td className="text-left border-2 p-2">
                   {/* Aquí puedes agregar botones o enlaces para editar o eliminar usuarios */}
                   <div className="flex flex-rows items-center">
-                    <button className="text-blue-600 hover:underline mr-2">Editar</button>
+                    <Link href={`/dashboard/admin/rango/${rango.id}`} className="text-blue-600 hover:underline mr-2">Editar</Link>
                     <DeleteRangoButton id={rango.id} />
 
                   </div>
